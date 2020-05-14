@@ -15,8 +15,9 @@ def pokedex(request):
     }
     return HttpResponse(template.render(context, request))
 
+
 def pokemon(request, pokemon):
-    pokemon = Pokemon.objects.filter(name=pokemon).first()
+    pokemon = Pokemon.objects.filter(name=pokemon).first() or Pokemon.objects.filter(id=pokemon).first()
     template = loader.get_template('pokemon.html')
     context = {
         'title': pokemon,
